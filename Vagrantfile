@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "machine1" do |machine1|
   machine1.vm.box = "hashicorp/precise32"
   machine1.vm.network "forwarded_port", guest:80, host:4567, auto_correct:true
-  machine1.vm.network "private_network", ip: "192.168.33.10"
+  machine1.vm.network "private_network", type: "dhcp"
   machine1.vm.network "public_network"
   machine1.vm.provision "shell", path:"machine1_boot.sh"
 machine1.ssh.username = "vagrant"
@@ -40,7 +40,7 @@ machine1.ssh.password ="vagrant"
   config.vm.define "machine2" do |machine2|
   machine2.vm.box = "hashicorp/precise32"
   #machine2.vm.network "forwarded_port", guest:80, host:4770, auto_correct:true
-  machine2.vm.network "private_network", ip: "192.168.33.11"
+  machine2.vm.network "private_network", type: "dhcp"
   machine2.vm.network "public_network"
   machine2.vm.provision "shell", path:"machine2_boot.sh"  
 machine2.ssh.username = "vagrant"
